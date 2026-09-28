@@ -10,6 +10,16 @@ const CARDS = [
     image: "/w0.png",
   },
   {
+    label: "Brotherhood",
+    text: "Sharing a meal together after the program",
+    image: "/w0-2.png",
+  },
+  {
+    label: "Halaqah",
+    text: "Weekly learning with Sheikh Ahmed Umarji",
+    image: "/w0-3.png",
+  },
+  {
     label: "Community",
     text: "Quran, tafseer, and seerah programs for all ages",
     image: "/w1.jpg",
