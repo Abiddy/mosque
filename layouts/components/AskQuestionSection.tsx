@@ -1,16 +1,7 @@
-import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import TextFade from "./ui/TextFade";
-
-const ShaderPanelBackground = dynamic(
-  () =>
-    import("@/components/ui/hero-section-with-smooth-bg-shader").then(
-      (m) => m.ShaderPanelBackground
-    ),
-  { ssr: false }
-);
 
 type PublicQuestion = {
   id: string;
@@ -93,23 +84,15 @@ const AskQuestionSection = () => {
   };
 
   return (
-    <section id="ask-a-question" className="fm-section px-6 py-12 md:py-16 lg:px-10">
-      <div className="relative mx-auto flex min-h-[min(68vh,580px)] max-w-5xl flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-[#dee2de] px-6 py-14 md:min-h-[min(72vh,640px)] md:px-10 md:py-20">
-        <ShaderPanelBackground
-          distortion={0.85}
-          swirl={0.55}
-          speed={0.38}
-          offsetX={0.12}
-          veilOpacity="bg-white/22"
-        />
-
+    <section id="ask-a-question" className="iit-section">
+      <div className="iit-card relative mx-auto flex min-h-[min(60vh,520px)] max-w-5xl flex-col items-center justify-center px-5 pb-12 pt-20 md:px-10 md:py-20">
         <button
           type="button"
           onClick={() => setView((v) => (v === "form" ? "list" : "form"))}
-          className={`absolute right-4 top-4 z-20 rounded-full border-2 px-4 py-2 font-pp text-sm transition-colors md:right-6 md:top-6 ${
+          className={`absolute right-4 top-4 z-20 rounded-full border px-4 py-2 font-instrument-sans text-sm transition-colors md:right-6 md:top-6 ${
             view === "list"
-              ? "border-[#2c2c2c] bg-[#2c2c2c] text-white"
-              : "border-white/60 bg-white/80 text-[#2c2c2c] backdrop-blur-sm hover:bg-white"
+              ? "border-white bg-white text-[#0a0f1f]"
+              : "border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
           }`}
         >
           Answers
@@ -117,9 +100,8 @@ const AskQuestionSection = () => {
 
         <div className="relative z-10 w-full max-w-3xl">
           <TextFade className="mb-8 text-center md:mb-10">
-            <h2 className="font-pp text-[32px] leading-[0.95] text-[#2c2c2c] md:text-[50px]">
-              Have a question?
-            </h2>
+            <p className="iit-eyebrow mb-4">Ask the Sheikh</p>
+            <h2 className="iit-title">Have a question?</h2>
           </TextFade>
 
           <div ref={ref} className="relative min-h-[72px]">
@@ -134,7 +116,7 @@ const AskQuestionSection = () => {
                 >
                   <form
                     onSubmit={handleSubmit}
-                    className="glass-card flex items-center gap-3 rounded-2xl border border-white/40 bg-white/80 px-4 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.08)] md:px-5 md:py-4"
+                    className="flex items-center gap-3 rounded-2xl border border-white/15 bg-white/[0.07] px-4 py-3 md:px-5 md:py-4"
                   >
                     <input
                       id="ask-question"
@@ -143,13 +125,13 @@ const AskQuestionSection = () => {
                       onChange={(e) => setQuestion(e.target.value)}
                       disabled={status === "loading"}
                       placeholder="Ask our Sheikh a Question Anonymously"
-                      className="min-w-0 flex-1 border-0 bg-transparent font-pp text-base text-[#2c2c2c] placeholder:text-[#b4b8b4] focus:outline-none focus:ring-0 md:text-lg"
+                      className="min-w-0 flex-1 border-0 bg-transparent font-instrument-sans text-base text-white placeholder:text-white/40 focus:outline-none focus:ring-0 md:text-lg"
                       autoComplete="off"
                     />
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-black text-white transition-colors hover:bg-[#2c2c2c] disabled:opacity-50 md:h-10 md:w-10"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-[#0a0f1f] transition-colors hover:bg-white/90 disabled:opacity-50 md:h-10 md:w-10"
                       aria-label="Send question"
                     >
                       <ArrowUp
@@ -163,10 +145,8 @@ const AskQuestionSection = () => {
                     <motion.p
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className={`mt-4 text-center text-sm ${
-                        status === "success"
-                          ? "text-[#2c2c2c]"
-                          : "text-[#646464]"
+                      className={`mt-4 text-center font-instrument-sans text-sm ${
+                        status === "success" ? "text-white" : "text-white/60"
                       }`}
                     >
                       {message}
@@ -180,14 +160,15 @@ const AskQuestionSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.25 }}
-                  className="fm-card max-h-[min(42vh,420px)] overflow-y-auto rounded-2xl border border-white/40 bg-white/85 p-4 backdrop-blur-sm md:p-6"
+                  data-lenis-prevent
+                  className="max-h-[min(42vh,420px)] overflow-y-auto rounded-2xl border border-white/15 bg-white/[0.06] p-4 md:p-6"
                 >
                   {loadingList ? (
-                    <p className="py-8 text-center text-sm text-[#646464]">
+                    <p className="py-8 text-center font-instrument-sans text-sm text-white/60">
                       Loading…
                     </p>
                   ) : questions.length === 0 ? (
-                    <p className="py-8 text-center font-pp text-[#646464]">
+                    <p className="py-8 text-center font-instrument-sans text-white/60">
                       No published answers yet. Check back soon.
                     </p>
                   ) : (
@@ -195,16 +176,16 @@ const AskQuestionSection = () => {
                       {questions.map((q) => (
                         <li
                           key={q.id}
-                          className="border-b border-[#e8e8e8] pb-5 last:border-0 last:pb-0"
+                          className="border-b border-white/10 pb-5 last:border-0 last:pb-0"
                         >
-                          <p className="font-pp text-base leading-snug text-[#2c2c2c] md:text-lg">
+                          <p className="font-instrument-serif text-xl leading-snug text-white md:text-2xl">
                             {q.body}
                           </p>
-                          <p className="mt-3 text-sm leading-relaxed text-[#444141]">
+                          <p className="mt-3 font-instrument-sans text-sm leading-relaxed text-white/70">
                             {q.answer}
                           </p>
                           {q.answered_at && (
-                            <p className="mt-2 text-xs text-[#b4b8b4]">
+                            <p className="mt-2 font-instrument-sans text-xs text-white/40">
                               Answered {formatDate(q.answered_at)}
                             </p>
                           )}

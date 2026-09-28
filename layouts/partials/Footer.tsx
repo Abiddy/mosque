@@ -8,22 +8,40 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import Link from "next/link";
 import IITLogo from "@layouts/components/IITLogo";
 
-const Footer = () => {
+type FooterProps = {
+  dark?: boolean;
+};
+
+const Footer = ({ dark = false }: FooterProps) => {
+  const t = dark
+    ? {
+        footer: "relative z-10 border-t border-white/10 bg-black/20 backdrop-blur-sm",
+        title: "font-instrument-serif text-xl text-white",
+        body: "text-white/60",
+        faint: "text-white/40",
+        link: "text-white/50 transition-colors hover:text-white",
+      }
+    : {
+        footer: "border-t border-[#e8e8e8] bg-[#fefffc]",
+        title: "font-instrument-serif text-xl text-[#2c2c2c]",
+        body: "text-[#646464]",
+        faint: "text-[#b4b8b4]",
+        link: "text-[#b4b8b4] transition-colors hover:text-[#2c2c2c]",
+      };
+
   return (
-    <footer className="border-t border-[#e8e8e8] bg-[#fefffc]">
-      <div className="mx-auto max-w-6xl px-6 py-10">
+    <footer className={t.footer}>
+      <div className="mx-auto max-w-6xl px-6 py-10 font-instrument-sans">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <div className="text-center md:text-left">
             <div className="mb-3 flex items-center justify-center gap-2.5 md:justify-start">
               <IITLogo size={36} />
-              <p className="font-pp text-lg text-[#2c2c2c]">
-                Islamic Institute of Torrance
-              </p>
+              <p className={t.title}>Islamic Institute of Torrance</p>
             </div>
-            <p className="mt-2 text-sm text-[#646464]">
+            <p className={`mt-2 text-sm ${t.body}`}>
               18103 Prairie Ave, Torrance, CA 90504 · (310) 956-8006
             </p>
-            <p className="mt-1 text-xs text-[#b4b8b4]">
+            <p className={`mt-1 text-xs ${t.faint}`}>
               © {new Date().getFullYear()} IIT. Made with حُب in Gardena
             </p>
           </div>
@@ -33,7 +51,7 @@ const Footer = () => {
               href="https://www.facebook.com/groups/iitorrance/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#b4b8b4] transition-colors hover:text-[#2c2c2c]"
+              className={t.link}
               aria-label="Facebook"
             >
               <FontAwesomeIcon icon={faFacebook as IconProp} size="lg" />
@@ -42,7 +60,7 @@ const Footer = () => {
               href="https://www.youtube.com/@iitorrance285"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#b4b8b4] transition-colors hover:text-[#2c2c2c]"
+              className={t.link}
               aria-label="YouTube"
             >
               <FontAwesomeIcon icon={faYoutube as IconProp} size="lg" />
@@ -51,24 +69,24 @@ const Footer = () => {
               href="https://www.instagram.com/masjidiit/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#b4b8b4] transition-colors hover:text-[#2c2c2c]"
+              className={t.link}
               aria-label="Instagram"
             >
               <FontAwesomeIcon icon={faInstagram as IconProp} size="lg" />
             </a>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-[#646464]">
-            <Link href="#announcements" className="hover:text-[#2c2c2c]">
+          <div className={`flex flex-wrap justify-center gap-4 text-sm ${t.body}`}>
+            <Link href="#announcements" className={t.link}>
               Events
             </Link>
-            <Link href="#activities" className="hover:text-[#2c2c2c]">
+            <Link href="#activities" className={t.link}>
               Activities
             </Link>
-            <Link href="#ask-a-question" className="hover:text-[#2c2c2c]">
+            <Link href="#ask-a-question" className={t.link}>
               Ask a Question
             </Link>
-            <Link href="#donate" className="hover:text-[#2c2c2c]">
+            <Link href="#donate" className={t.link}>
               Donate
             </Link>
           </div>

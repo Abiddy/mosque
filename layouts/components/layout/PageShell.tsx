@@ -7,9 +7,9 @@ type PageShellProps = {
 
 const PageShell = ({ children }: PageShellProps) => {
   return (
-    <div className="bg-[#fefffc]">
-      <SiteNavbar />
-      <div className="pt-16 md:pt-[72px]">{children}</div>
+    <div className="text-white">
+      <SiteNavbar revealAfterHero />
+      {children}
     </div>
   );
 };

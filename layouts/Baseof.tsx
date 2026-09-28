@@ -12,6 +12,8 @@ export type base = {
   noindex?: string;
   canonical?: string;
   children?: React.ReactNode;
+  /** Transparent page chrome for pages that paint their own dark background. */
+  dark?: boolean;
 };
 
 const Base = ({
@@ -22,6 +24,7 @@ const Base = ({
   noindex,
   canonical,
   children,
+  dark = false,
 }: base) => {
   const { meta_image, meta_author, meta_description } = config.metadata;
   const { base_url } = config.site;
@@ -62,9 +65,13 @@ const Base = ({
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <div className="relative min-h-screen bg-[#fefffc]">
+      <div
+        className={`relative min-h-screen ${
+          dark ? "bg-[#060e24] text-white" : "bg-[#fefffc]"
+        }`}
+      >
         <main>{children}</main>
-        <Footer />
+        <Footer dark={dark} />
       </div>
     </>
   );

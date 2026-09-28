@@ -5,6 +5,11 @@ import { useEffect, useState } from "react";
 
 const CARDS = [
   {
+    label: "Worship",
+    text: "Standing together in prayer at IIT",
+    image: "/w0.png",
+  },
+  {
     label: "Community",
     text: "Quran, tafseer, and seerah programs for all ages",
     image: "/w1.jpg",
@@ -59,11 +64,12 @@ const CommunityCarousel = () => {
   return (
     <section
       id="community-gallery"
-      className="fm-section px-6 py-14 md:py-20 lg:px-10"
+      className="iit-section"
       aria-label="Community photos"
     >
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-pp mb-10 text-[32px] leading-[0.95] text-[#2c2c2c] md:text-[44px] lg:max-w-[700px]">
+        <p className="iit-eyebrow mb-4">Gallery</p>
+        <h2 className="iit-title mb-10 max-w-[700px]">
           Life at the Islamic Institute of Torrance
         </h2>
 
@@ -78,7 +84,7 @@ const CommunityCarousel = () => {
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: direction > 0 ? -40 : 40, scale: 0.95 }}
                   transition={{ duration: 0.7, ease }}
-                  className={`fm-card group relative h-[380px] overflow-hidden rounded-2xl md:h-[500px] ${
+                  className={`group relative border border-white/10 h-[380px] overflow-hidden rounded-2xl md:h-[500px] ${
                     i > 0 ? "hidden md:block" : ""
                   } ${i > 1 ? "hidden lg:block" : ""}`}
                 >
@@ -91,10 +97,8 @@ const CommunityCarousel = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <p className="mb-2 text-xs font-medium uppercase tracking-widest text-white/70">
-                      {card.label}
-                    </p>
-                    <p className="font-pp text-xl leading-tight text-white md:text-2xl">
+                    <p className="iit-eyebrow mb-2 !text-white/75">{card.label}</p>
+                    <p className="font-instrument-serif text-2xl leading-tight text-white md:text-3xl">
                       {card.text}
                     </p>
                   </div>
@@ -107,7 +111,7 @@ const CommunityCarousel = () => {
             <button
               type="button"
               onClick={() => go(-1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#dee2de] text-[#2c2c2c] transition-colors hover:border-[#b8beb8] hover:bg-[#eef1ed]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-sm transition-colors hover:border-white/40 hover:bg-white/10"
               aria-label="Previous"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -115,7 +119,7 @@ const CommunityCarousel = () => {
             <button
               type="button"
               onClick={() => go(1)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#dee2de] text-[#2c2c2c] transition-colors hover:border-[#b8beb8] hover:bg-[#eef1ed]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-sm transition-colors hover:border-white/40 hover:bg-white/10"
               aria-label="Next"
             >
               <ChevronRight className="h-5 w-5" />
