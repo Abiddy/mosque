@@ -29,8 +29,21 @@ const Navbar = ({ tone = "light" }: NavbarProps) => {
                 : "font-pp text-sm leading-tight text-[#2c2c2c] sm:min-w-0 sm:truncate sm:text-[22px] lg:text-[26px]"
             }
           >
-            <span className="sm:hidden">IIT</span>
-            <span className="hidden sm:inline">Islamic Institute of Torrance</span>
+            {dark ? (
+              <>
+                <span className="block text-[15px] leading-[1.05] sm:hidden">
+                  Islamic Institute
+                  <br />
+                  of Torrance
+                </span>
+                <span className="hidden sm:inline">Islamic Institute of Torrance</span>
+              </>
+            ) : (
+              <>
+                <span className="sm:hidden">IIT</span>
+                <span className="hidden sm:inline">Islamic Institute of Torrance</span>
+              </>
+            )}
           </span>
         </Link>
 

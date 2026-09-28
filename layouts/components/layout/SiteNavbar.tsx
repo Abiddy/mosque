@@ -33,7 +33,11 @@ const SiteNavbar = ({ revealAfterHero = false }: SiteNavbarProps) => {
           <IITLogo size={28} className="sm:hidden" />
           <IITLogo size={40} className="hidden sm:block" />
           <span className="font-instrument-serif text-lg leading-tight text-white sm:min-w-0 sm:truncate sm:text-2xl">
-            <span className="sm:hidden">IIT</span>
+            <span className="block text-[15px] leading-[1.05] sm:hidden">
+              Islamic Institute
+              <br />
+              of Torrance
+            </span>
             <span className="hidden sm:inline">Islamic Institute of Torrance</span>
           </span>
         </Link>
